@@ -1,0 +1,64 @@
+CREATE DATABASE IF NOT EXISTS gestion_hotelera;
+USE gestion_hotelera;
+
+-- Tabla de Usuarios
+CREATE TABLE Usuarios (
+    ID_Usuario INT AUTO_INCREMENT PRIMARY KEY,
+    Nombre VARCHAR(100) NOT NULL,
+    Correo_Electronico VARCHAR(100) UNIQUE NOT NULL,
+    Telefono VARCHAR(15),
+    Tipo_Usuario ENUM('Cliente', 'Administrador') NOT NULL
+);
+
+-- Tabla de Clientes
+CREATE TABLE Clientes (
+    ID_Cliente INT PRIMARY KEY,
+    Direccion VARCHAR(255),
+    Fecha_Nacimiento DATE,
+    Preferencias TEXT,
+    Metodo_Pago VARCHAR(50),
+    FOREIGN KEY (ID_Cliente) REFERENCES Usuarios(ID_Usuario)
+);
+
+-- Tabla de Administradores
+CREATE TABLE Administradores (
+    ID_Administrador INT PRIMARY KEY,
+    Rol VARCHAR(50),
+    Fecha_Contratacion DATE,
+    Historial_Actividades TEXT,
+    FOREIGN KEY (ID_Administrador) REFERENCES Usuarios(ID_Usuario)
+);
+
+-- Tabla de Habitaciones
+CREATE TABLE Habitaciones (
+    ID_Habitacion INT AUTO_INCREMENT PRIMARY KEY,
+    Numero_Habitacion VARCHAR(10) UNIQUE NOT NULL,
+    Tipo_Habitacion VARCHAR(50),
+    Precio DECIMAL(10, 2) NOT NULL,
+    Estado ENUM('Disponible', 'Reservada', 'Ocupada') DEFAULT 'Disponible'
+);
+
+-- Tabla de Reservas
+CREATE TABLE Reservas (
+    ID_Reserva INT AUTO_INCREMENT PRIMARY KEY,
+    ID_Cliente INT,
+    ID_Habitacion INT,
+    Fecha_Reserva DATE NOT NULL,
+    Fecha_Checkin DATE NOT NULL,
+    Fecha_Checkout DATE NOT NULL,
+    Estado_Reserva ENUM('Confirmada', 'Cancelada', 'Pendiente') DEFAULT 'Pendiente',
+    Metodo_Pago VARCHAR(50),
+    FOREIGN KEY (ID_Cliente) REFERENCES Clientes(ID_Cliente),
+    FOREIGN KEY (ID_Habitacion) REFERENCES Habitaciones(ID_Habitacion)
+);
+
+-- Tabla de Pagos
+CREATE TABLE Pagos (
+    ID_Pago INT AUTO_INCREMENT PRIMARY KEY,
+    ID_Reserva INT,
+    Monto DECIMAL(10, 2) NOT NULL,
+    Fecha_Pago DATE NOT NULL,
+    Estado_Pago ENUM('Completado', 'Fallido', 'Pendiente') DEFAULT 'Pendiente',
+    FOREIGN KEY (ID_Reserva) REFERENCES Reservas(ID_Reserva)
+);
+show databases;
