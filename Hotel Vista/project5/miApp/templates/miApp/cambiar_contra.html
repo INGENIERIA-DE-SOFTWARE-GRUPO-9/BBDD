@@ -1,0 +1,26 @@
+{% load static %} 
+
+
+<div class="align-self-center w-100 px-lg-5 py-lg-4 p-4">
+    <h1 class="font-weight-bold mb-4" id="subir">Cambiar contraseña</h1>
+    {% if messages %}
+        {% for message in messages %}
+            <p class="{% if message.tags %}{{ message.tags }}{% endif %}">{{ message }}</p>
+        {% endfor %}
+    {% endif %}
+    <form method="post">
+        {% csrf_token %}
+        {{ form.non_field_errors }}
+        <div class="form-group">
+            <label for="{{ form.new_password1.id_for_label }}">Nueva contraseña:</label>
+            {{ form.new_password1 }}
+            {{ form.new_password1.errors }}
+        </div>
+        <div class="form-group">
+            <label for="{{ form.new_password2.id_for_label }}">Confirmar contraseña:</label>
+            {{ form.new_password2 }}
+            {{ form.new_password2.errors }}
+        </div>
+        <button type="submit" class="btn btn-primary">Guardar contraseña</button>
+    </form>
+</div>

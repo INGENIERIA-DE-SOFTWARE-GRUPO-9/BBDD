@@ -1,0 +1,170 @@
+{% load static %} 
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" href="{% static 'imagenes/Icono/over.png' %}" />
+  <title>Hotel</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Open+Sans:wght@400;600&display=swap"
+    rel="stylesheet">
+  <link type="text/css" href="{% static 'css/estilo.css' %}" rel="stylesheet" />
+  <style>
+    .pelicula button {
+      background-color: transparent;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      display: block;
+      text-align: center;
+    }
+
+    .pelicula button img {
+      width: 100%;
+      height: auto;
+      margin-bottom: 10px;
+    }
+
+    .pelicula button p {
+      color: rgb(52, 97, 139);
+    } 
+
+    .navbar-brand img {
+  width: 100px; /* Ajusta el ancho según sea necesario */
+  height: auto; /* Esto permite mantener la proporción de la imagen */
+  margin-right: 2px; /* Ajusta el margen derecho para separar el logo del texto */
+}
+  </style>
+</head>
+
+
+<body style="background-image: url('{% static "img/imagenes/Fondos/nl.jpg" %}');">
+
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <!-- Logo y título -->
+    <a class="navbar-brand" href="{% url 'index' %}" id="fuente">
+      <!-- Aquí está el logo -->
+      <img src="{% static 'img/imagenes/Icono/Duoc.png' %}"alt="Logo de Hotel vista">
+      
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'index' %}">Inicio</a>
+        </li>
+        
+        </li>
+        
+        
+         
+          {% if user.is_authenticated %}
+          
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'micuenta' %}">Mi Cuenta</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/logout">Logout</a>
+          </li>
+        </ul>
+          {% else %}
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'registrarse' %}">Registrarse</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'recuperarcontra' %}">Recuperar Contraseña</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'inicio_sesionjg' %}">Iniciar sesion</a>
+          </li>
+          <form class="d-flex" id="separar-derecha">
+            <a class="nav-link">(Registro necesario para seleccionar una habitación)</a>
+     
+      {% endif %}
+       
+        
+     
+      
+    </form>
+    </div>
+
+  </nav>
+
+
+  <main>
+    <div class="wiki">
+      <div class="contenedor">
+        <h3 class="titulo">Bienvenido a Hotel Vista</h3>
+        <p class="descripcion">
+          ¡Bienvenido! Tenemos una variada oferta para ti.
+        </p>
+        
+      </div>
+    </div>
+    <div class="container-fluid">
+      <div class="itemtf-recomendadas contenedor">
+        <div class="contenedor-titulo-controles">
+          <h3 id="fuente">Hotel Vista</h3>
+          <div class="indicadores"></div>
+        </div>
+
+        <div class="contenedor-principal">
+
+              <div class="contenedor-carousel">
+                <div class="carousel">
+                    <div class="pelicula">
+                      <button class="btn-categoria" onclick="window.location.href='{% url 'habitaciones' %}'"style="color: rgb(177, 165, 1); font-size: 16px;"> 
+                        <i class="fas fa-gamepad"></i> <span style="font-size: 18px;">Habitaciones</span>
+                    </button>
+                    </div>
+                    <div class="pelicula">
+                      <button class="btn-categoria" onclick="window.location.href='https://www.google.com/maps/place/R%C3%ADo+Imperial+460,+Valle+Grande,+Lampa,+Regi%C3%B3n+Metropolitana/@-33.3295809,-70.751195,17z/data=!3m1!4b1!4m5!3m4!1s0x9662bf62531dc747:0xc0b4aee73c3b9373!8m2!3d-33.3295854!4d-70.7490063?hl=es-CL'" 
+                      style="color: rgb(177, 165, 1); font-size: 16px;">
+                          <i class="fas fa-compass"></i> <span style="font-size: 18px;">Dirección</span>
+                      </button>
+                  </div>
+                    <div class="pelicula">
+                        <button class="btn-categoria" onclick="window.location.href='{% url 'contacto' %}'" style="color: rgb(177, 165, 1); font-size: 16px;">
+                            <i class="fas fa-dice"></i> <span style="font-size: 18px;">Contáctenos</span>
+                        </button>
+                    </div>
+                    <div class="pelicula">
+                        <button class="btn-categoria" onclick="window.location.href='{% url 'aboutus' %}'" style="color: rgb(177, 165, 1); font-size: 16px;">
+                            <i class="fas fa-crosshairs"></i> <span style="font-size: 18px;">Sobre nosotros</span>
+                        </button>
+                    </div>
+                    
+                    </div>
+                </div>
+            </div>
+            
+            
+            
+            </div>
+
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Footer -->
+  <footer id="piedepag">
+    <a class="nav-link" href="{% url 'informes_creados' %}">Historial versiones</a>
+    <p>Chile, Santiago de Chile | Fono: 227369936 | Email: HotelVista@gmail.com</p>
+    <p>Copyright 2024  <span style="color: #3c4c92;">Hotel Vista</span></p>
+</footer>
+  
+  <script src="https://cdn.jsdelivr.net/npm/glider-js@1.7.3/glider.min.js"></script>
+  <script src="https://kit.fontawesome.com/2c36e9b7b1.js" crossorigin="anonymous"></script>
+  <script src="{% static 'js/main.js' %}"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+</body>
+
+</html>

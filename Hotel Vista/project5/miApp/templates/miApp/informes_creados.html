@@ -1,0 +1,18 @@
+{% load static %} 
+
+<h1>Historial versiones</h1>
+
+<ul>
+  {% for informe in informes_creados %}
+  <li>
+  
+      {% if informe.important %}
+      <strong>{{informe.title}}</strong>
+      {% else %} {{informe.id}} {{informe.title}} {% endif %}
+      <p>{{informe.description}}</p>
+
+      {{informe.datecompleted|date:'M j Y:i'}}
+    </a>
+  </li>
+  {% endfor %}
+</ul>
