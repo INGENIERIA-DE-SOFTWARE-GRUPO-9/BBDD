@@ -1,2 +1,3 @@
 # BBDD
-Script para la base de datos
+Programa en su primera versión con base de datos
+
