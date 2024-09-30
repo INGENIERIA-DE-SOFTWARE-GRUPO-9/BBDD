@@ -57,7 +57,7 @@
         <div class="letra">
             <div class="container">
                 <div class="center-titulo">
-                    <h1 id=titulo>RPG</h1>
+                    <h1 id=titulo>Contacto</h1>
                 </div>
                 <div class="container">
                     <div class="w-33">
@@ -87,30 +87,5 @@
                             </div>
                             
                             
-                    </div>
-                    <section class="rpg">
-                        {% for i in rpg %}
-                            {% if i.tipo == 3 %}
-                                <div class="habitacion">
-                                    <img src="{{ i.imagen }}" width="250px" height="250px">
-                                    <div id="info">
-                                        <div class="nombre">
-                                            <h1>{{ i.detalle }}</h1>
-                                        </div>
-                                        <div class="precio">
-                                            
-                                                <br>${{i.precio}}</b>
-                                              
-                                        </div>
-                                    </div>
-                                    {% if i.fechadisponibilidad == 0%}
-                                        <a href="">no hay stock</a>
-                                    {% else %}
-                                        <a href="">fechadisponibilidad: {{ i.fechadisponibilidad }}</a>
-                                        <div id="textoAgregar">
-                                        </div>
-                                    {% endif %}
-                                </div>
-                            {% endif %}
-                        {% endfor %}
+                    
                     </section>

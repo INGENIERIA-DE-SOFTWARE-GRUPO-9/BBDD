@@ -31,25 +31,27 @@
               </li>
               
                 
-                {% if user.is_authenticated %}
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'micuenta' %}">Mi Cuenta</a>
-                  </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="/logout">Logout</a>
+              {% if user.is_authenticated %}
+              <li class="nav-item">
+                  <a class="nav-link" href="{% url 'micuenta' %}">Mi Cuenta</a>
                 </li>
-                </ul>
-               </div>
-                {% else %}
-                <li class="nav-item">
-                  <a class="nav-link" href="{% url 'registrarse' %}">Registrarse</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="{% url 'inicio_sesionjg' %}">Iniciar sesion</a>
-                </li>
-                <form class="d-flex" id="separar-derecha">
-                {% endif %}
-            </ul>
+              <li class="nav-item">
+                <a class="nav-link" href="/logout">Logout</a>
+              </li>
+              </ul>
+              <a class="nav-link" href="{% url 'reservacion' %}">RESERVA</a>
+             </div>
+              {% else %}
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'registrarse' %}">Registrarse</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'inicio_sesionjg' %}">Iniciar sesion</a>
+              </li>
+              <form class="d-flex" id="separar-derecha">
+                  <a class="nav-link">(Inicio sesion necesario para hacer tu reserva)</a>
+              {% endif %}
+          </ul>
          
       
     </nav>
@@ -92,29 +94,38 @@
                     <section class="habitaciones">
                         {% for i in habitaciones %}
                             {% if i.tipo == 2 %}
-                                <div class="habitacion">
+                                <div class="producto">
                                     <img src="{{ i.imagen }}" width="250px" height="250px">
                                     <div id="info">
                                         <div class="nombre">
                                             <h1>{{ i.detalle }}</h1>
                                         </div>
                                         <div class="precio">
-                                            
-                                                <br>${{i.precio}}</b>
-                                              
+                                            <br>${{ i.precio }}</b>
                                         </div>
                                     </div>
-                                    {% if i.fechadisponibilidad == 0%}
-                                        <a href="">no hay stock</a>
-                                    {% else %}
-                                        <a href="">fechadisponibilidad: {{ i.fechadisponibilidad }}</a>
-                                        <div id="textoAgregar">
-                                        </div>
-                                    {% endif %}
+                    
+                                    {% if messages %}
+                                    <ul>
+                                    {% for message in messages %}
+                                        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                                    {% endfor %}
+                                    </ul>
+                                {% endif %}
+                    
+                                    <form action="{% url 'addtocar' i.codigo %}" method="post">
+                                        {% csrf_token %}
+                                        <label for="fecha_inicio">Fecha de inicio:</label>
+                                        <input type="date" id="fecha_inicio" name="fecha_inicio" required>
+                                        <label for="fecha_fin">Fecha de fin:</label>
+                                        <input type="date" id="fecha_fin" name="fecha_fin" required>
+                                        <button type="submit">Agregar</button>
+                                    </form>
                                 </div>
                             {% endif %}
                         {% endfor %}
                     </section>
+                    
                     
                         
                        

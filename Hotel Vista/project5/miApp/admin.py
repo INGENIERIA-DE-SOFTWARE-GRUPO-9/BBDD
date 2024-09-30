@@ -6,3 +6,4 @@ class MicuentaAdmin(admin.ModelAdmin):
   
 admin.site.register(informe,MicuentaAdmin)
 admin.site.register(habitacion)
+admin.site.register(reserva)

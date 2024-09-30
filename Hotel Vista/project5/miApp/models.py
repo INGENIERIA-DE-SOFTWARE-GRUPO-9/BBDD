@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from jsonschema import ValidationError
 
 # Create your models here.
 # PRIMERA TABLA DADA POR DJANGO COMO TABLA USUARIO, DESCRITOS PARAMETROS EN FORMS.PY
@@ -27,3 +28,16 @@ class informe(models.Model):  # tabla creada para usuario admin TF pueda crear i
 
   def __str__(self):
     return self.title + ' - ' + self.user.username    
+  
+class reserva(models.Model):
+    habitacion = models.ForeignKey('habitacion', on_delete=models.CASCADE)
+    fecha_inicio = models.DateField()
+    fecha_fin = models.DateField()
+
+    def clean(self):
+        # Validación opcional para asegurar que fecha_fin > fecha_inicio
+        if self.fecha_fin <= self.fecha_inicio:
+            raise ValidationError('La fecha de fin debe ser posterior a la fecha de inicio.')
+
+    def __str__(self):
+        return f"Reserva de {self.habitacion} del {self.fecha_inicio} al {self.fecha_fin}"

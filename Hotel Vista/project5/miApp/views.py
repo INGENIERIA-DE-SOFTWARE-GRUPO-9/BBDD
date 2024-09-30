@@ -10,6 +10,7 @@ from django.contrib.auth.forms import PasswordResetForm
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib import messages
+from django.utils import timezone
 
 
 
@@ -99,8 +100,19 @@ def aboutus(request):
       return render(request, 'aboutus.html', {'aboutus': aboutus})
 
 def habitaciones(request):
-    habitaciones = habitacion.objects.all()
-    return render(request, 'habitaciones.html', {'habitaciones': habitaciones})
+    today = timezone.now().date()
+    habitaciones_list = habitacion.objects.all()
+
+    for hab in habitaciones_list:
+        # Obtener todas las reservas de la habitación
+        reservas = reserva.objects.filter(habitacion=hab)
+
+        # Marcar como reservada si hay reservas que incluyen la fecha de hoy
+        hab.reservada_hoy = any(
+            res.fecha_inicio <= today <= res.fecha_fin for res in reservas
+        )
+
+    return render(request, 'habitaciones.html', {'habitaciones': habitaciones_list, 'today': today})
 
 def contacto(request):
       contacto = habitacion.objects.all()
@@ -152,3 +164,118 @@ def cambiar_contra(request, user_id):
         form = ChangePasswordForm()
     
     return render(request, 'cambiar_contra.html', {'form': form})
+
+def reservacion(request):
+    context = {"carro":request.session.get("carro", [])}
+    user = request.user
+    return render(request, 'miApp/reservacion.html',  context)
+
+def dropitem(request, codigo):
+    carro = request.session.get("carro", [])
+    nuevo_carro = []  # Crear una nueva lista para almacenar los elementos que quedan
+
+    for item in carro:
+        if item[0] == codigo:
+            # Si el ítem que se quiere eliminar es encontrado
+            if item[4] > 1:
+                # Reducir la cantidad y recalcular el subtotal
+                item[4] -= 1
+                item[5] = item[3] * item[4]
+                nuevo_carro.append(item)  # Agregar el item modificado
+            # No agregar el item si es que se elimina completamente
+        else:
+            nuevo_carro.append(item)  # Agregar ítems que no se están eliminando
+
+    request.session["carro"] = nuevo_carro
+    return redirect(to="reservacion")
+
+def addtocar(request, codigo):
+    producto = habitacion.objects.get(codigo=codigo)
+    carro = request.session.get("carro", [])
+
+    tipo_vista_mapping = {
+        1: 'accion',
+        2: 'habitaciones',
+        3: 'contacto',
+        4: 'aboutus',
+    }
+
+    if request.method == 'POST':
+        fecha_inicio = request.POST['fecha_inicio']
+        fecha_fin = request.POST['fecha_fin']
+        fecha_inicio = timezone.datetime.strptime(fecha_inicio, "%Y-%m-%d").date()
+        fecha_fin = timezone.datetime.strptime(fecha_fin, "%Y-%m-%d").date()
+        
+        # Verificar si hay una reserva existente para el rango de fechas
+        if reserva.objects.filter(
+            habitacion=producto,
+            fecha_inicio__lt=fecha_fin,
+            fecha_fin__gt=fecha_inicio
+        ).exists():
+            messages.error(request, 'Ya existe una reserva para estas fechas.')
+            return redirect('habitaciones')
+        
+        # Calcular la duración de la estancia
+        num_dias = (fecha_fin - fecha_inicio).days
+        total_precio = num_dias * producto.precio
+
+        
+
+        # Agregar al carro
+        carro.append([codigo, producto.detalle, producto.imagen, producto.precio, num_dias, total_precio])
+        request.session["carro"] = carro
+        
+        if producto.tipo in tipo_vista_mapping:
+            return redirect(to=tipo_vista_mapping[producto.tipo])
+
+    return redirect('habitaciones')
+
+
+def agendar(request):
+    if request.method == 'POST':
+        carro = request.session.get("carro", [])
+        today = timezone.now().date()
+
+        for item in carro:
+            codigo = item[0]
+            producto = habitacion.objects.get(codigo=codigo)
+
+            # Obtener las fechas de inicio y fin desde el formulario
+            fecha_inicio = request.POST.get(f'fecha_inicio_{codigo}')
+            fecha_fin = request.POST.get(f'fecha_fin_{codigo}')
+
+            # Validar que las fechas no sean nulas
+            if fecha_inicio and fecha_fin:
+                fecha_inicio = timezone.datetime.strptime(fecha_inicio, "%Y-%m-%d").date()
+                fecha_fin = timezone.datetime.strptime(fecha_fin, "%Y-%m-%d").date()
+            else:
+                messages.error(request, f'Las fechas para la habitación {producto.detalle} son obligatorias.')
+                return redirect('reservacion')
+
+            # Validar las fechas antes de crear la reserva
+            if fecha_fin <= fecha_inicio:
+                messages.error(request, 'La fecha de fin debe ser posterior a la fecha de inicio.')
+                return redirect('reservacion')
+
+            # Verificar si hay una reserva existente para el rango de fechas
+            if reserva.objects.filter(
+                habitacion=producto,
+                fecha_inicio__lt=fecha_fin,
+                fecha_fin__gt=fecha_inicio
+            ).exists():
+                messages.error(request, f'Ya existe una reserva para la habitación {producto.detalle} en esas fechas.')
+                return redirect('reservacion')
+
+            # Crear una nueva reserva
+            nueva_reserva = reserva(habitacion=producto, fecha_inicio=fecha_inicio, fecha_fin=fecha_fin)
+            nueva_reserva.save()
+
+            carro.remove(item)
+
+        # Actualizar el carro en la sesión
+        request.session["carro"] = carro
+
+        messages.success(request, 'Reserva Exitosa. Te enviamos un comprobante a tu correo.')
+        return redirect('reservacion')
+
+    return redirect('reservacion')

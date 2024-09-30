@@ -6,31 +6,34 @@ Logo Dell: https://worldvectorlogo.com/logo/dell-1
 */
 
 :root {
-    --dark: #270ba5;
-    --dark-x: #0a14aa; 
+    --dark: #b37e0d;
+    --dark-x: #b49508; 
     --light: #ffffff;
     --rojo: #b82116;
-	--fondo: #1414148c;
+    --fondo: #D2B48C; /* Color café claro */
 }
 
 body {
     font-family: 'Spartan', sans-serif;
     font-weight: 300;
     color: var(--light);
+    background-color: var(--fondo); /* Cambia el color de fondo */
 }
+
 * {
-	margin: 0;
-	padding: 0;
-	box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
-#subir{
+
+#subir {
     margin-top: 20px;
 }
 
 .button {
-    background-color: #2b97fd;
+    background-color: var(--rojo); /* Cambiar a un color rojo */
     border: none;
-    color: rgb(16, 14, 136);
+    color: var(--light); /* Texto en blanco */
     padding: 15px 32px;
     text-align: center;
     text-decoration: none;
@@ -40,7 +43,8 @@ body {
     cursor: pointer;
     width: 100%;
     border-radius: 5px;
-  }
+}
+
 .text-light { color: var(--light) !important; }
 .bg-dark { background-color: var(--dark) !important; }
 .bg-dark-x { background-color: var(--dark-x); }
@@ -54,9 +58,43 @@ body {
     min-height: 3.125rem;
     line-height: initial;
 }
+
 .form-control:focus {
     background-color: var(--dark-x);
     outline: none;
+}
+
+footer {
+    background-color: rgba(26, 25, 25, 0.664);
+    color: white;
+    padding-top: 1.2rem;
+    padding-bottom: 1.2rem;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+#fuente {
+    color: var(--rojo);
+    font-family: 'Bebas Neue', cursive;
+    font-size: 30px;
+    padding-left: 20px;
+}
+
+#piedepag {
+    font-family: 'Bebas Neue', cursive;
+    color: var(--rojo);
+    font-size: 20px;
+}
+
+nav {
+    font-family: 'Bebas Neue', cursive;
+    font-size: 22px;
+    color: var(--rojo);
+}
+
+#separarsearch {
+    padding-right: 20px;
 }
 
 .img-1 {
@@ -70,34 +108,3 @@ body {
     background-size: cover;
     background-position: center;
 }
-
-footer {
-    background-color: rgba(26, 25, 25, 0.664);
-    color: white;
-    padding-top: 1.2rem;
-    padding-bottom: 1.2rem;
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-}
-
-#fuente{
-	color: var(--rojo);
-	font-family: 'Bebas Neue', cursive;
-	font-size: 30px;
-	padding-left: 20px;
-}
-#piedepag{
-	font-family: 'Bebas Neue', cursive;
-	color: var(--rojo);
-	font-size: 20px;
-}
-nav{
-	font-family: 'Bebas Neue', cursive;
-	font-size: 22px;
-	color: var(--rojo);
-}
-#separarsearch{
-	padding-right: 20px;
-}
-
