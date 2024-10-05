@@ -42,9 +42,9 @@
 </head>
 
 
-<body style="background-image: url('{% static "img/imagenes/Fondos/nl.jpg" %}');">
+<body style="background-image: url('{% static "img/imagenes/Fondos/sun.jpg" %}');">
 
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <nav class="navbar navbar-expand-lg navbar-light navbar-custom">
     <!-- Logo y título -->
     <a class="navbar-brand" href="{% url 'index' %}" id="fuente">
       <!-- Aquí está el logo -->
@@ -84,7 +84,6 @@
             <a class="nav-link" href="{% url 'inicio_sesionjg' %}">Iniciar sesion</a>
           </li>
           <form class="d-flex" id="separar-derecha">
-            <a class="nav-link">(Registro necesario para seleccionar una habitación)</a>
      
       {% endif %}
        
@@ -99,13 +98,18 @@
 
   <main>
     <div class="wiki">
-      <div class="contenedor">
-        <h3 class="titulo">Bienvenido a Hotel Vista</h3>
-        <p class="descripcion">
-          ¡Bienvenido! Tenemos una variada oferta para ti.
-        </p>
-        
-      </div>
+        <div class="contenedor">
+            <div class="d-flex align-items-center">
+                <div class="texto-sobre-imagen">
+                    <h3 class="titulo mb-0">Descubre Hotel Vista</h3>
+                    <p class="bienvenida">¡Bienvenidos a un refugio de tranquilidad y confort!</p> <!-- Nueva línea añadida -->
+                </div>
+                <img src="{% static 'img/imagenes/hotel.jpg' %}" alt="Hotel Vista" class="img-fluid ms-3" style="width: 2000px; height: 800px;">
+                <!-- Ajusta el tamaño según sea necesario -->
+            </div>
+        </div>
+    </div>
+
     </div>
     <div class="container-fluid">
       <div class="itemtf-recomendadas contenedor">
@@ -158,7 +162,7 @@
   <footer id="piedepag">
     <a class="nav-link" href="{% url 'informes_creados' %}">Historial versiones</a>
     <p>Chile, Santiago de Chile | Fono: 227369936 | Email: HotelVista@gmail.com</p>
-    <p>Copyright 2024  <span style="color: #3c4c92;">Hotel Vista</span></p>
+    <p>Copyright 2024  <span style="color: #000000;">Hotel Vista</span></p>
 </footer>
   
   <script src="https://cdn.jsdelivr.net/npm/glider-js@1.7.3/glider.min.js"></script>

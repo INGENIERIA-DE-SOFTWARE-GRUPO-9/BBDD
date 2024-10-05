@@ -14,7 +14,7 @@
 </head>
 
 <body id=fondo>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav class="navbar navbar-expand-lg navbar-light navbar-custom">
         
         <a class="navbar-brand" href="{% url 'index' %}" id="fuente">Hotel Vista</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -60,7 +60,7 @@
         <div class="letra">
             <div class="container">
                 <div class="center-titulo">
-                    <h1 id=titulo>Elige tu tipo de habitación preferida</h1>
+                    <h1 id=titulo>Habitaciones disponibles</h1>
                 </div>
                 <div class="container">
                     <div class="w-33">
@@ -86,7 +86,7 @@
                 <div class="container tabla-fondo">
                     <div class="row">
                             <div class="d-none d-sm-none d-md-block col-sm-4 border border-secondary fondo-tabla center">
-                                <h5>Habitaciones</h5>
+                                <h5>Elige tu tipo de habitación preferida</h5>
                             </div>
                             
                             
@@ -94,16 +94,19 @@
                     <section class="habitaciones">
                         {% for i in habitaciones %}
                             {% if i.tipo == 2 %}
-                                <div class="producto">
-                                    <img src="{{ i.imagen }}" width="250px" height="250px">
-                                    <div id="info">
-                                        <div class="nombre">
-                                            <h1>{{ i.detalle }}</h1>
-                                        </div>
-                                        <div class="precio">
-                                            <br>${{ i.precio }}</b>
-                                        </div>
+                            <div class="producto">
+                                <div class="info">
+                                    <div class="nombre">
+                                        <h1>{{ i.detalle }}</h1> <!-- Detalle de la habitación -->
                                     </div>
+                                    <div class="precio">
+                                        <b>${{ i.precio }}</b> <!-- Precio de la habitación -->
+                                    </div>
+                                    
+                                </div>
+                                <img src="{{ i.imagen }}" alt="Imagen de habitación"> <!-- Imagen de la habitación -->
+                            </div>
+                            
                     
                                     {% if messages %}
                                     <ul>
@@ -119,7 +122,7 @@
                                         <input type="date" id="fecha_inicio" name="fecha_inicio" required>
                                         <label for="fecha_fin">Fecha de fin:</label>
                                         <input type="date" id="fecha_fin" name="fecha_fin" required>
-                                        <button type="submit">Agregar</button>
+                                        <button type="submit">Agendar ahora</button>
                                     </form>
                                 </div>
                             {% endif %}

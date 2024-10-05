@@ -18,7 +18,7 @@
     <title>Registrarse</title>
   </head>
   <body class="bg-dark">
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav class="navbar navbar-expand-lg navbar-light navbar-custom">
         
       <a class="navbar-brand" href="{% url 'index' %}" id="fuente">Hotel Vista</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -59,8 +59,8 @@
     <div class="container">
         <div class="row justify-content-center align-items-center min-vh-100">
             <div class="col-lg-6">
-                <h1 class="text-center text-white mb-4">Ingrese sus Datos</h1>
-                {{ error }}
+              <h1 class="text-center text-black mb-4">Ingrese sus Datos</h1>
+              {{ error }}
                 <form action="/registrarse/" method="POST" onsubmit="return validarContraseña()">
                     {% csrf_token %}
 

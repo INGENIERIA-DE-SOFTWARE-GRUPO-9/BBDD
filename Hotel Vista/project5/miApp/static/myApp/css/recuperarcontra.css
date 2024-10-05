@@ -25,10 +25,14 @@ header {
 	font-size: 30px;
 	padding-left: 20px;
 }
-#piedepag{
-	font-family: 'Bebas Neue', cursive;
-	color: var(--rojo);
-	font-size: 20px;
+#piedepag {
+    font-family: 'Bebas Neue', cursive;
+    color: #000000; /* Esto afecta el color del texto dentro del footer */
+    font-size: 20px;
+}
+
+#piedepag p {
+    color: black !important; /* Esto debería forzar el color a negro */
 }
 nav{
 	font-family: 'Bebas Neue', cursive;

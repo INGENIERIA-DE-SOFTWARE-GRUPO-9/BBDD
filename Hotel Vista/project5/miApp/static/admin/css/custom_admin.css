@@ -1,0 +1,39 @@
+/* Custom Admin CSS */
+body {
+    background-color: white !important; /* Cambiar el fondo a blanco */
+}
+
+#header {
+    background-color: #3c4c92; /* Puedes mantener el color del encabezado o cambiarlo */
+}
+
+h1, h2, h3 {
+    color: black; /* Cambiar el color de los títulos a negro */
+}
+
+#content {
+    padding: 20px; /* Cambia el padding del contenido */
+}
+
+
+/* custom_admin.css */
+
+/* Cambiar el fondo a un color específico */
+body {
+    background-color: #f0f0f0; /* Cambia este valor por el color que desees (ejemplo: gris claro) */
+}
+
+/* Personalizar el encabezado */
+#header {
+    background-color: #3c4c92; /* Cambia el color del encabezado si lo deseas */
+}
+
+/* Cambiar el color de los títulos */
+h1, h2, h3 {
+    color: black; /* Cambia el color de los títulos a negro */
+}
+
+/* Ajustar el padding del contenido */
+#content {
+    padding: 20px; /* Ajusta el padding del contenido según lo necesites */
+}

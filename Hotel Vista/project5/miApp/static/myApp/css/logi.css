@@ -6,18 +6,18 @@ Logo Dell: https://worldvectorlogo.com/logo/dell-1
 */
 
 :root {
-    --dark: #b37e0d;
-    --dark-x: #b49508; 
-    --light: #ffffff;
-    --rojo: #b82116;
-    --fondo: #D2B48C; /* Color café claro */
+    --dark: #fcfaf7;
+    --dark-x: #f1f0e7; 
+    --light: #070606;
+    --rojo: #080808;
+    --fondo: #faf8f5; /* Color café claro */
 }
 
 body {
     font-family: 'Spartan', sans-serif;
     font-weight: 300;
-    color: var(--light);
-    background-color: var(--fondo); /* Cambia el color de fondo */
+    color: #0c0c0c;
+        background-color: var(--fondo); /* Cambia el color de fondo */
 }
 
 * {
@@ -45,7 +45,7 @@ body {
     border-radius: 5px;
 }
 
-.text-light { color: var(--light) !important; }
+.text-light { color: var(--dark) !important; }
 .bg-dark { background-color: var(--dark) !important; }
 .bg-dark-x { background-color: var(--dark-x); }
 
@@ -66,7 +66,7 @@ body {
 
 footer {
     background-color: rgba(26, 25, 25, 0.664);
-    color: white;
+    color: rgb(14, 11, 11);
     padding-top: 1.2rem;
     padding-bottom: 1.2rem;
     display: flex;
@@ -83,8 +83,12 @@ footer {
 
 #piedepag {
     font-family: 'Bebas Neue', cursive;
-    color: var(--rojo);
+    color: black; /* Cambia el color a negro */
     font-size: 20px;
+}
+
+footer#piedepag p {
+    color: black !important; /* Aumentar la especificidad */
 }
 
 nav {
@@ -107,4 +111,12 @@ nav {
     background-image: url('/static/img/imagenes/Fondos/sun.jpg');
     background-size: cover;
     background-position: center;
+}
+
+h1 {
+    color: black; /* Cambia el color de todos los h1 a negro */
+}
+
+.text-black {
+    color: black; /* Clase para texto negro */
 }

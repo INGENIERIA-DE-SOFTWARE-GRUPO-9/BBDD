@@ -1,8 +1,8 @@
 #titulo {
-    color: #a13210;
+    color: #160d0b;
     border: 3px dimgray solid;
     border-radius: 100px;
-    background-color: black ;
+    background-color: rgb(255, 254, 254) ;
     margin-top: 20px;
     margin-left: 20%;
     margin-right: 20%;
@@ -20,7 +20,7 @@
 }
 
 #caja_bienvenida{
-   background-color: black;
+   background-color: rgb(236, 226, 226);
    margin: auto;
    margin-top: 13px;
    border: 3px dimgray solid;
@@ -201,6 +201,7 @@ footer {
 body {
 	background: var(--fondo);
 	font-family: 'Open Sans', sans-serif;
+	font-size: 14px;
 }
 header {
 	font-family: 'Bebas Neue', cursive;
@@ -208,15 +209,20 @@ header {
 	font-size: 22px;
 	
 }
+
+.nombre h1 {
+    font-size: 15px; /* Ajusta este valor según tus necesidades */
+    margin: 0; /* Elimina el margen si es necesario */
+}
 #fuente{
 	color: var(--rojo);
 	font-family: 'Bebas Neue', cursive;
-	font-size: 30px;
+	font-size: 20px;
    padding-left: 20px;
 }
 #piedepag{
 	font-family: 'Bebas Neue', cursive;
-	color: var(--rojo);
+	color: #000000;
 	font-size: 20px;
 	margin-top: 20px;
 }
@@ -258,9 +264,41 @@ nav{
 } 
 
 .tabla-fondo {
-    background-color: #9c3737; /* Color de fondo gris oscuro */
+    background-color: #f0e9e9; /* Color de fondo gris oscuro */
     border-radius: 8px; /* Bordes redondeados */
-    border: 2px solid #7c2e2e; /* Borde sólido gris oscuro */
-    color: #fff; /* Color de texto blanco */
+    border: 2px solid #f3eded; /* Borde sólido gris oscuro */
+    color: #130202; /* Color de texto blanco */
     padding: 10px; /* Espaciado interno */
+	
+}	
+
+.producto {
+    display: flex; /* Usar flexbox para alinear elementos */
+    align-items: flex-start; /* Alinear elementos al principio */
+    margin-bottom: 20px; /* Espaciado entre productos */
+    background-color: #f8f9fa; /* Color de fondo */
+    padding: 10px; /* Espaciado interno */
+    border: 1px solid #ccc; /* Borde */
+    border-radius: 5px; /* Bordes redondeados */
+	
+}
+
+.producto img {
+    width: 250px; /* Ancho de la imagen */
+    height: auto; /* Altura automática */
+    object-fit: cover; /* Cubrir el área sin deformar */
+    margin-left: 20px; /* Margen izquierdo para separación */
+}
+
+.info {
+    flex-grow: 1; /* Hacer que el texto ocupe el espacio restante */
+    padding-right: 20px; /* Espaciado a la derecha */
+}
+
+/* Estilo para la fecha de agendar */
+.fecha-agendar {
+    margin-top: 10px; /* Espacio encima de la fecha */
+    color: #3c4c92; /* Color de texto */
+    font-family: 'Georgia', serif; /* Fuente */
+    font-size: 18px; /* Tamaño de fuente */
 }

@@ -2,8 +2,8 @@
     --dark: #16191C;
     --dark-x: #1E2126; 
     --light: #ffffff;
-    --rojo: #ffc400;
-	--fondo: #1414148c;
+    --rojo: #000000;
+	--fondo: #eee7e7;
 }
 * {
     margin: 0;
@@ -17,7 +17,7 @@
 }
 /*footer*/
 footer {
-    background-color: rgba(36, 36, 36, 0.664);
+    background-color: rgba(250, 245, 245, 0.664);
     color: white;
     padding-top: 1.2rem;
     padding-bottom: 1.2rem;
@@ -34,10 +34,14 @@ footer {
 	font-size: 30px;
 	padding-left: 20px;
 }
-#piedepag{
-	font-family: 'Bebas Neue', cursive;
-	color: var(--rojo);
-	font-size: 20px;
+#piedepag {
+    font-family: 'Bebas Neue', cursive;
+    color: #000000; /* Esto afecta el color del texto dentro del footer */
+    font-size: 20px;
+}
+
+#piedepag p {
+    color: black !important; /* Esto debería forzar el color a negro */
 }
 nav{
 	font-family: 'Bebas Neue', cursive;
@@ -225,17 +229,27 @@ Copiar esto
         width: 95%;
     }
 
-    .seccion-perfil-usuario .redes-sociales {
-        position: relative;
-        flex-direction: row;
+    .seccion-perfil-usuario .perfil-usuario-header {
         width: 100%;
-        left: 0;
-        text-align: center;
-        margin-top: 1rem;
-        margin-bottom: 1rem;
-        align-items: center;
-        justify-content: center
+        display: flex;
+        justify-content: center;
+        background-color: var(--light); /* Cambia el fondo a blanco si no quieres que aparezca negro */
+        background-image: url('/static/img/imagenes/Fondos/sun.jpg');
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover; /* Asegúrate de que la imagen cubra el área */
+        margin-bottom: 1.25rem;
+    }
+    body {
+        font-family: 'Bebas Neue', cursive; 
+        background-color: var(--light); /* Asegúrate de que el fondo sea blanco */
     }
 
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        background-color: transparent; /* Asegúrate de que no haya fondo oscuro por defecto */
+    }
 
 }

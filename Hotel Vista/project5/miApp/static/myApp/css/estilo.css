@@ -1,5 +1,5 @@
 :root {
-    --rojo: #1a28a8;
+    --rojo: #080808;
 }
 
 * {
@@ -10,8 +10,9 @@
 
 body {
     background-image: url('/static/img/imagenes/Fondos/sun.jpg');
-    background-size: cover;
-    background-repeat: no-repeat;
+    background-size: cover; /* Ajusta el tamaño de la imagen para cubrir todo el fondo */
+    background-repeat: no-repeat; /* Evita que la imagen se repita */
+    background-position: left center; /* Alinea la imagen a la izquierda y la centra verticalmente */
     font-family: 'Open Sans', sans-serif;
     background-color: transparent; /* Eliminar cualquier color de fondo */
 }
@@ -33,13 +34,15 @@ header {
     font-size: 30px;
     padding-left: 20px;
 }
-
 #piedepag {
     font-family: 'Bebas Neue', cursive;
-    color: var(--rojo);
+    color: #000000; /* Esto afecta el color del texto dentro del footer */
     font-size: 20px;
 }
 
+#piedepag p {
+    color: black !important; /* Esto debería forzar el color a negro */
+}
 nav {
     font-family: 'Bebas Neue', cursive;
     font-size: 22px;
@@ -49,16 +52,36 @@ nav {
 .wiki {
     font-size: 16px;
     min-height: 40.62em;
-    color: #cc3636;
+    color: #080707;
     /* background: linear-gradient(rgba(0, 0, 0, .363) 0%, rgba(0, 0, 0, 0.363) 100%), url(static/img/img_wiki/TheforestPrueba1.png); */
     background-position: center center;
     background-size: cover;
     margin-bottom: 3.12em;
     display: flex;
     align-items: end;
+    position: relative; /* Asegúrate de que el contenedor sea relativo */
+
+}
+
+.texto-sobre-imagen {
+    position: absolute; /* Posiciona el texto de forma absoluta */
+    top: 75%; /* Ajusta para centrar verticalmente */
+    left: 200px; /* Alinea el texto a la izquierda */
+    transform: translateY(-50%); /* Ajusta el centro del texto verticalmente */
+    color: white; /* Color del texto */
+    z-index: 10; /* Asegúrate de que esté encima de la imagen */
+    padding: 10px; /* Espaciado interno */
+    border-radius: 5px; /* Bordes redondeados opcionales */
+    text-align: left; /* Alineación a la izquierda */
 }
 
 
+.bienvenida {
+    font-size: 18px; /* Tamaño del texto de bienvenida */
+    margin-top: 5px; /* Espaciado superior para separarlo del título */
+    color: white; /* Color del texto */
+    text-align: left; /* Alineación a la izquierda */
+}
 .wiki .contenedor {
     margin: 0 auto;
     margin-bottom: 6.25em;
@@ -79,7 +102,7 @@ nav {
 }
 
 .wiki .boton {
-    background: rgba(197, 17, 17, 0.5);
+    background: rgba(24, 23, 23, 0.5);
     border: none;
     border-radius: 0.31em;
     padding: 0.93em 1.87em;
@@ -92,7 +115,7 @@ nav {
 
 .wiki .boton:hover {
     background: #fff;
-    color: #d12020;
+    color: #050505;
 }
 
 .wiki .boton i {
@@ -121,7 +144,7 @@ nav {
 
 .contenedor-titulo-controles .indicadores button:hover,
 .contenedor-titulo-controles .indicadores button.activo {
-    background: red;
+    background: rgb(12, 11, 11);
 }
 
 .itemtf-recomendadas {
@@ -138,7 +161,7 @@ nav {
 .itemtf-recomendadas .contenedor-principal .flecha-derecha {
     position: absolute;
     border: none;
-    background: rgba(202, 12, 12, 0.3);
+    background: rgba(15, 14, 14, 0.3);
     font-size: 40px;
     height: 50%;
     top: calc(50% - 25%);
@@ -228,7 +251,7 @@ nav {
 }
 
 footer {
-    background-color: rgba(170, 12, 12, 0.664);
+    background-color: rgb(255, 255, 255);
     color: white;
     padding-top: 1.2rem;
     padding-bottom: 1.2rem;
@@ -238,8 +261,8 @@ footer {
 }
 
 .btn-categoria {
-    background-color: red; /* Cambiar el color de fondo a rojo */
-    color: rgb(202, 31, 31); /* Cambiar el color del texto a blanco */
+    background-color: rgb(20, 13, 13); /* Cambiar el color de fondo a rojo */
+    color: rgb(22, 20, 20); /* Cambiar el color del texto a blanco */
     border: none;
     cursor: pointer;
     padding: 10px 15px;
@@ -252,7 +275,7 @@ footer {
 }
 
 .btn-categoria:hover {
-    background-color: rgba(192, 14, 14, 0.781); /* Cambia el color de fondo al pasar el mouse */
+    background-color: rgba(17, 16, 16, 0.781); /* Cambia el color de fondo al pasar el mouse */
     color: #fff; /* Cambia el color del texto al pasar el mouse */
 }
 
@@ -262,15 +285,23 @@ footer {
 
 .btn-categoria span {
     font-size: 16px; /* Tamaño del texto dentro del span */
-    color: #c01e1e; /* Color del texto dentro del span */
+    color: #131111; /* Color del texto dentro del span */
 }
 
 .container {
     max-width: 800px;
     margin: auto;
-    background-color: #9C0001;
+    background-color: #080707;
     padding: 20px;
     border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    overflow: hidden; /* Esto elimina el espacio alrededor del contenido */
+    box-shadow: 0 4px 6px rgb(226, 222, 222);
+    overflow: hidden; /* Ergba(238, 235, 235, 0.911)lrededor del contenido */
+}
+
+.navbar-custom {
+    background-color: white;
+}
+    
+.navbar-custom .nav-link {
+    color: black;
 }
